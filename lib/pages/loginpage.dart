@@ -30,11 +30,17 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   height: 25,
                 ),
-                MyTextField(),
+                MyTextField(
+                  obscureText: false,
+                  hintText: 'Email',
+                ),
                 SizedBox(
                   height: 20,
                 ),
-                MyTextField(),
+                MyTextField(
+                  hintText: 'password',
+                  obscureText: true,
+                ),
               ],
             ),
           ),
