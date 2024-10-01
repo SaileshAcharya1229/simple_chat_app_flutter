@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MyTextField extends StatelessWidget {
   String hintText;
   final bool obscureText;
-  MyTextField({super.key, required this.hintText, required this.obscureText});
+  MyTextField({super.key, required this.hintText, required this.obscureText, required TextEditingController controller});
 
   @override
   Widget build(BuildContext context) {
