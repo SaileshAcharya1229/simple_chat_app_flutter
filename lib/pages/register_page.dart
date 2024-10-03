@@ -54,7 +54,7 @@ class RegisterPage extends StatelessWidget {
                   height: 25,
                 ),
                 MyButton(
-                  text: "Login",
+                  text: "Register",
                   onTap: register,
                 ),
                 const SizedBox(
@@ -66,12 +66,12 @@ class RegisterPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Not a member? ",
+                      "Already have an account?",
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.primary),
                     ),
                     Text(
-                      "Register now",
+                      "Login now",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Theme.of(context).colorScheme.primary),
