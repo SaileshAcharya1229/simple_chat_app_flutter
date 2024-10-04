@@ -7,6 +7,7 @@ class RegisterPage extends StatelessWidget {
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passController = TextEditingController();
+  TextEditingController _confirmpassController = TextEditingController();
 
   //register method
   void register() {}
@@ -50,9 +51,19 @@ class RegisterPage extends StatelessWidget {
                   obscureText: true,
                   controller: _passController,
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+
+                MyTextField(
+                  hintText: 'confirm password',
+                  obscureText: true,
+                  controller: _confirmpassController,
+                ),
                 const SizedBox(
                   height: 25,
                 ),
+
                 MyButton(
                   text: "Register",
                   onTap: register,
