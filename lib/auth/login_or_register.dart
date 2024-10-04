@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:simple_chat_app/pages/loginpage.dart';
+import 'package:simple_chat_app/pages/register_page.dart';
 
 class LoginOrRegister extends StatefulWidget {
   const LoginOrRegister({super.key});
@@ -8,8 +10,22 @@ class LoginOrRegister extends StatefulWidget {
 }
 
 class _LoginOrRegisterState extends State<LoginOrRegister> {
+  //initially, show login page
+  bool showLoginPage = true;
+
+  //toggle between login and register page
+  void togglePages() {
+    setState(() {
+      showLoginPage = !showLoginPage;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    if (showLoginPage) {
+      return LoginPage();
+    } else {
+      return RegisterPage();
+    }
   }
 }
