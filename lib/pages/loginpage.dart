@@ -7,8 +7,9 @@ class LoginPage extends StatelessWidget {
   final TextEditingController _passController = TextEditingController();
 
   //tap to go to register page
-   void function()? onTap;
-  LoginPage({super.key,required this.onTap});
+
+  final void Function()? onTap;
+  LoginPage({super.key, required this.onTap});
 
   //login method
   void login() {}

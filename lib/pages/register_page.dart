@@ -3,7 +3,8 @@ import 'package:simple_chat_app/components/My_button.dart';
 import 'package:simple_chat_app/components/my_textfield.dart';
 
 class RegisterPage extends StatelessWidget {
-  RegisterPage({super.key});
+  final void Function()? onTap;
+  RegisterPage({super.key, required this.onTap});
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passController = TextEditingController();
@@ -81,11 +82,14 @@ class RegisterPage extends StatelessWidget {
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.primary),
                     ),
-                    Text(
-                      "Login now",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.primary),
+                    GestureDetector(
+                      onTap: onTap,
+                      child: Text(
+                        "Login now",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.primary),
+                      ),
                     ),
                   ],
                 ),
