@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "83634852443",
+    "project_id": "minimal-chatapp-7eafe",
+    "storage_bucket": "minimal-chatapp-7eafe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83634852443:android:bd763618b027caf482257e",
+        "android_client_info": {
+          "package_name": "com.example.simple_chat_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaDCYpU0YUwsGkWiaHf2kEE5VRugtYBcc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
