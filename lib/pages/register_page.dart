@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_chat_app/auth/auth_service.dart';
 import 'package:simple_chat_app/components/My_button.dart';
 import 'package:simple_chat_app/components/my_textfield.dart';
 
@@ -11,7 +12,14 @@ class RegisterPage extends StatelessWidget {
   TextEditingController _confirmpassController = TextEditingController();
 
   //register method
-  void register() {}
+  void register() {
+    final _auth = AuthService();
+
+    _auth.signInWithEmailPassword(
+      _emailController.text,
+      _passController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
