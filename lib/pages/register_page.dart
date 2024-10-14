@@ -30,6 +30,14 @@ class RegisterPage extends StatelessWidget {
         );
       }
     }
+    else{
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          title: Text("Password dont match!"),
+        ),
+      );
+    }
   }
 
   @override
