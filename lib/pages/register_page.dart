@@ -12,13 +12,24 @@ class RegisterPage extends StatelessWidget {
   TextEditingController _confirmpassController = TextEditingController();
 
   //register method
-  void register() {
+  void register(BuildContext context) {
     final _auth = AuthService();
 
-    _auth.signInWithEmailPassword(
-      _emailController.text,
-      _passController.text,
-    );
+    if (_passController.text == _confirmpassController.text) {
+      try {
+        _auth.signInWithEmailPassword(
+          _emailController.text,
+          _passController.text,
+        );
+      } catch (e) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(e.toString()),
+          ),
+        );
+      }
+    }
   }
 
   @override
@@ -75,7 +86,7 @@ class RegisterPage extends StatelessWidget {
 
                 MyButton(
                   text: "Register",
-                  onTap: register,
+                  onTap: () => register(context),
                 ),
                 const SizedBox(
                   height: 25,
