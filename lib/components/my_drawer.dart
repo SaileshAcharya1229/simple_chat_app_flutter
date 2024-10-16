@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_chat_app/pages/setting_page.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -9,7 +10,9 @@ class MyDrawer extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       child: Column(
         children: [
-          //logo
+          Column(
+            children: [],
+          ), //logo
           DrawerHeader(
             child: Center(
               child: Icon(
@@ -25,7 +28,11 @@ class MyDrawer extends StatelessWidget {
             child: ListTile(
               title: Text("HOME"),
               leading: Icon(Icons.home),
-              onTap: () {},
+              onTap: () {
+                //pop the drawer
+
+                Navigator.pop(context);
+              },
             ),
           ),
           //setting listtile
@@ -34,7 +41,19 @@ class MyDrawer extends StatelessWidget {
             child: ListTile(
               title: Text("SETTINGS"),
               leading: Icon(Icons.settings),
-              onTap: () {},
+              onTap: () {
+                //pop the drawer
+
+                Navigator.pop(context);
+
+                //navigate to setting page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (sontext) => SettingPage(),
+                  ),
+                );
+              },
             ),
           ),
           //logout listtile
