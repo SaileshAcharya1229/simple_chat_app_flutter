@@ -59,4 +59,5 @@ class DefaultFirebaseOptions {
     projectId: 'minimal-chatapp-7eafe',
     storageBucket: 'minimal-chatapp-7eafe.appspot.com',
   );
+
 }
