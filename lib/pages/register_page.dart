@@ -17,7 +17,7 @@ class RegisterPage extends StatelessWidget {
 
     if (_passController.text == _confirmpassController.text) {
       try {
-        _auth.signInWithEmailPassword(
+        _auth.signUpWithEmailPassword(
           _emailController.text,
           _passController.text,
         );
