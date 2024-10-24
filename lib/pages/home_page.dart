@@ -49,5 +49,13 @@ class HomePage extends StatelessWidget {
     );
   }
 
- 
+  //build individual list tile for user
+  Widget _buildUserListItem(
+      Map<String, dynamic> userData, BuildContext context) {
+    //display all users except current user
+    return UserTile(
+      text: userData["email"],
+      onTap: () {},
+    );
+  }
 }
