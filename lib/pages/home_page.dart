@@ -4,6 +4,8 @@ import 'package:simple_chat_app/components/user_tile.dart';
 import 'package:simple_chat_app/services/auth/auth_service.dart';
 import 'package:simple_chat_app/services/chat/chat_services.dart';
 
+import 'chat_page.dart';
+
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
@@ -42,7 +44,7 @@ class HomePage extends StatelessWidget {
         //return ListView
         return ListView(
           children: snapshot.data!
-              .map<Widget>((userData) => _buildUserListItem)
+              .map<Widget>((userData) => _buildUserListItem(userData, context))
               .toList(),
         );
       },
@@ -55,7 +57,15 @@ class HomePage extends StatelessWidget {
     //display all users except current user
     return UserTile(
       text: userData["email"],
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ChatPage(
+                receiverEmail: userData["email"],
+              ),
+            ));
+      },
     );
   }
 }
