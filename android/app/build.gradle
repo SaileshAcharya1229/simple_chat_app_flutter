@@ -21,11 +21,14 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-//apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
 
+// Keep this line as it is, since it's loading the Flutter Gradle plugin
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
 
 android {
     namespace "com.example.simple_chat_app"
