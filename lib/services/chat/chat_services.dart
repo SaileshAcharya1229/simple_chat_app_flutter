@@ -14,6 +14,17 @@ class ChatServices {
     });
   }
   // send messages
+  Future<void>sendMessage(String receiverId,message)async{
+
+    //get current user info
+
+    //create a new message
+
+    //construct chat room ID for the two users
+
+
+    //add new message to the database
+  }
 
   // get messages
 }
