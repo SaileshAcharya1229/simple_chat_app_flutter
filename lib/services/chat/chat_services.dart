@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:simple_chat_app/models/message.dart';
 
 class ChatServices {
   //get  instance  of firestore
@@ -19,12 +20,19 @@ class ChatServices {
   // send messages
   Future<void> sendMessage(String receiverId, message) async {
     //get current user info
-    final String currentUseId = _auth.currentUser!.uid;
+    final String currentUserId = _auth.currentUser!.uid;
     final String currentUserEmail = _auth.currentUser!.email!;
     final Timestamp timestamp = Timestamp.now();
 
     //create a new message
 
+    Message newMessage = Message(
+      senderId: currentUserId,
+      senderEmail: currentUserEmail,
+      receiverId: receiverId,
+      message: message,
+      timestamp: timestamp,
+    );
     //construct chat room ID for the two users
 
     //add new message to the database
