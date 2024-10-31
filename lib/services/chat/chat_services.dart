@@ -34,8 +34,16 @@ class ChatServices {
       timestamp: timestamp,
     );
     //construct chat room ID for the two users
+    List<String> ids = [currentUserId, receiverId];
+    ids.sort();
+    String chatRoomId = ids.join('_');
 
     //add new message to the database
+    await _firestore
+        .collection("chat_rooms")
+        .doc(chatRoomId)
+        .collection("messages")
+        .add(newMessage.toMap());
   }
 
   // get messages
