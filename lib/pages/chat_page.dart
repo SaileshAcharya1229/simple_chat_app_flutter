@@ -6,7 +6,7 @@ class ChatPage extends StatelessWidget {
   final String receiverEmail;
   final String receiverId;
 
-  ChatPage({super.key, required this.receiverEmail,required this.receiverId});
+  ChatPage({super.key, required this.receiverEmail,required this.receiverId });
 
   final TextEditingController _messageController = TextEditingController();
 
