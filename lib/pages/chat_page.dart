@@ -6,21 +6,22 @@ class ChatPage extends StatelessWidget {
   final String receiverEmail;
   final String receiverId;
 
-  ChatPage({super.key, required this.receiverEmail,required this.receiverId });
+  ChatPage({super.key, required this.receiverEmail, required this.receiverId});
 
   final TextEditingController _messageController = TextEditingController();
 
   //chat & auth services
   final ChatServices _chatServices = ChatServices();
   final AuthService _authService = AuthService();
-  
 
   //send message
-  void sendMessage() async{
+  void sendMessage() async {
     //if there is something inside text Field
-    if(_messageController.text.isNotEmpty){
+    if (_messageController.text.isNotEmpty) {
       //send message
-      await _chatService.sendMessage(recieverId,message)
+      await _chatServices.sendMessage(receiverId, _messageController.text);
+      //clear text controller
+      _messageController.clear();
     }
   }
 
@@ -29,6 +30,12 @@ class ChatPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(receiverEmail),
+      ),
+      body: Column(
+        children: [
+          //display all the message
+          Expanded(child: _buildMessageList(),)
+        ],
       ),
     );
   }
