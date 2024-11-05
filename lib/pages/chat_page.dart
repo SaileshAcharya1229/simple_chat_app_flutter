@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:simple_chat_app/services/auth/auth_service.dart';
 import 'package:simple_chat_app/services/chat/chat_services.dart';
 
+import '../components/my_textfield.dart';
+
 class ChatPage extends StatelessWidget {
   final String receiverEmail;
   final String receiverId;
@@ -37,7 +39,9 @@ class ChatPage extends StatelessWidget {
           //display all the message
           Expanded(
             child: _buildMessageList(),
-          )
+          ),
+          //user input
+          _buildUserInput(),
         ],
       ),
     );
@@ -71,6 +75,41 @@ class ChatPage extends StatelessWidget {
   //build message item
   Widget _buildMessageItem(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-    return Text(data["message"]);
+
+    //is current user
+    bool isCurrentUser = data['senderId'] == _authService.getCurrentUser()!.uid;
+    //align message to the right if sender is the current user ,otherwise left
+    var alignment =
+        isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
+
+    return Container(
+      alignment: alignment,
+      child: Column(
+        crossAxisAlignment:
+            isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          Text(data['message']),
+        ],
+      ),
+    );
+  }
+
+  //build message input
+  Widget _buildUserInput() {
+    return Row(children: [
+      //textfield should take up most of the space
+      Expanded(
+        child: MyTextField(
+          controller: _messageController,
+          hintText: "Type a message",
+          obscureText: false,
+        ),
+      ),
+      //send button
+      IconButton(
+        onPressed: sendMessage,
+        icon: Icon(Icons.arrow_upward),
+      ),
+    ]);
   }
 }
