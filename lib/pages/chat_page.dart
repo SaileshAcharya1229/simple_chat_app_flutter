@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:simple_chat_app/components/chat_bubble.dart';
 import 'package:simple_chat_app/services/auth/auth_service.dart';
 import 'package:simple_chat_app/services/chat/chat_services.dart';
 
@@ -33,6 +34,9 @@ class ChatPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(receiverEmail),
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
+        elevation: 0,
       ),
       body: Column(
         children: [
@@ -88,7 +92,7 @@ class ChatPage extends StatelessWidget {
         crossAxisAlignment:
             isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          Text(data['message']),
+          ChatBubble(message: data["message"], isCurrentUser: isCurrentUser)
         ],
       ),
     );
@@ -96,20 +100,33 @@ class ChatPage extends StatelessWidget {
 
   //build message input
   Widget _buildUserInput() {
-    return Row(children: [
-      //textfield should take up most of the space
-      Expanded(
-        child: MyTextField(
-          controller: _messageController,
-          hintText: "Type a message",
-          obscureText: false,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 50.0),
+      child: Row(children: [
+        //textfield should take up most of the space
+        Expanded(
+          child: MyTextField(
+            controller: _messageController,
+            hintText: "Type a message",
+            obscureText: false,
+          ),
         ),
-      ),
-      //send button
-      IconButton(
-        onPressed: sendMessage,
-        icon: Icon(Icons.arrow_upward),
-      ),
-    ]);
+        //send button
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.green,
+            shape: BoxShape.circle,
+          ),
+          margin: EdgeInsets.only(right: 25),
+          child: IconButton(
+            onPressed: sendMessage,
+            icon: Icon(
+              Icons.arrow_upward,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ]),
+    );
   }
 }
