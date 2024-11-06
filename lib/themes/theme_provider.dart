@@ -5,11 +5,19 @@ import 'package:simple_chat_app/themes/light_mode.dart';
 
 class ThemeProvider extends ChangeNotifier {
   ThemeData _themeData = lightMode;
-  dynamic get themeData => _themeData;
+  ThemeData get themeData => _themeData;
   bool get isDarkMode => _themeData == darkMode;
 
-  set ThemeData(ThemeData themeData) {
-    _themeData = _themeData;
+  set themeData(ThemeData themeData) {
+    _themeData = themeData;
     notifyListeners();
+  }
+
+  void toggleTheme() {
+    if (_themeData == lightMode) {
+      themeData = darkMode;
+    } else {
+      themeData = lightMode;
+    }
   }
 }

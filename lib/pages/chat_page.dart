@@ -6,24 +6,43 @@ import 'package:simple_chat_app/services/chat/chat_services.dart';
 
 import '../components/my_textfield.dart';
 
-class ChatPage extends StatelessWidget {
+class ChatPage extends StatefulWidget {
   final String receiverEmail;
   final String receiverId;
 
   ChatPage({super.key, required this.receiverEmail, required this.receiverId});
 
+  @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
   final TextEditingController _messageController = TextEditingController();
 
   //chat & auth services
   final ChatServices _chatService = ChatServices();
+
   final AuthService _authService = AuthService();
 
-  //send message
+  // for textfield focus
+  FocusNode myFocusNode = FocusNode();
+  @override
+  void initState() {
+    super.initState();
+    //add listener to focusnode
+    myFocusNode.addListener(() {
+      if (myFocusNode.hasFocus) {
+        Future.delayed(const Duration(milliseconds: 500));
+      }
+    });
+  }
+
   void sendMessage() async {
     //if there is something inside text Field
     if (_messageController.text.isNotEmpty) {
       //send message
-      await _chatService.sendMessage(receiverId, _messageController.text);
+      await _chatService.sendMessage(
+          widget.receiverId, _messageController.text);
       //clear text controller
       _messageController.clear();
     }
@@ -34,7 +53,7 @@ class ChatPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: Text(receiverEmail),
+        title: Text(widget.receiverEmail),
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.grey,
         elevation: 0,
@@ -56,7 +75,7 @@ class ChatPage extends StatelessWidget {
   Widget _buildMessageList() {
     String senderId = _authService.getCurrentUser()!.uid;
     return StreamBuilder(
-      stream: _chatService.getMessages(receiverId, senderId),
+      stream: _chatService.getMessages(widget.receiverId, senderId),
       builder: (context, snapshot) {
         //errors
         if (snapshot.hasError) {
