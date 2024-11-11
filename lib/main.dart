@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Chat App',
       home: const AuthGate(),
-      theme:Provider.of<ThemeProvider>(context).themeData,
+      theme: Provider.of<ThemeProvider>(context).themeData,
     );
   }
 }
